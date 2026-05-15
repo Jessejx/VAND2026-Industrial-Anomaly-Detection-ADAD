@@ -1,0 +1,123 @@
+seed: 1
+
+data:
+  root: /root/autodl-tmp/copy/data/mvtec_ad_2
+  categories:
+    - can
+    - fabric
+    - fruit_jelly
+    - rice
+    - sheet_metal
+    - vial
+    - wallplugs
+    - walnuts
+  include_validation_in_train: false
+
+transform:
+  strategy: resize_only
+  resize: 1008
+  crop:
+  multiple: 14
+
+synthetic:
+  enabled: true
+  backend: memmap
+  mmap_path: /root/autodl-tmp/copy/data/dtd_518x518x3.mmap
+  mmap_shape: [5640, 518, 518, 3]
+  mmap_color_order: bgr
+  anomaly_ratio: 0.1
+  perlin_percentile: 99.9
+  perlin_scale_min_pow: 1
+  perlin_scale_max_pow: 4
+  seed:
+
+model:
+  backbone:
+    #encoder: dinov2reg_vit_base_14
+    encoder: dinov2reg_vit_large_14
+    source_root: third_party/INP-Former-main
+    weights_dir: backbones/weights
+  inp_num: 6
+  residual_hidden: 128
+  fusion:
+    mode: linear
+    reconstruction_weight: 1.0
+    residual_weight: 1.0
+    normalize: false
+    base_lambda: 0.5
+    alpha: 2
+    k0: 5.0
+
+loss:
+  cdo:
+    gamma: 2.0
+    use_adaptive_weight: true
+    eps: 1.0e-6
+  residual_margin: 1.0
+
+train:
+  epochs: 200
+  batch_size: 2
+  num_workers: 8
+  drop_last: true
+  lr: 1.0e-4
+  min_lr: 1.0e-5
+  weight_decay: 1.0e-5
+  betas: [0.9, 0.999]
+  eps: 1.0e-10
+  clip_grad: 0.1
+  log_interval: 20
+  save_interval: 10
+  eval_public: true
+  eval_interval: 10
+  eval_metric: segf1
+  eval_batch_size: 4
+  eval_num_workers: 8
+  eval_threshold_quantile: 0.9995
+  #eval_threshold_quantile: 0.999
+  eval_gaussian_sigma: 4.0
+  save_dir: checkpoints/vand4
+  resume:
+
+test:
+  batch_size: 4
+  num_workers: 8
+  splits:
+    - test_private
+    - test_private_mixed
+  output_dir: outputs/vand4_submit
+  save_tiff: true
+  save_thresholded: true
+  save_heatmap: true
+  save_analysis: true
+  heatmap_alpha: 0.45
+  thresholded_from_heatmap: true
+  heatmap_mask_level: 0.65
+  resize_to_original: false
+  gaussian_sigma: 4.0
+  threshold_quantile: 0.9995
+  thresholds:
+    can:
+      test_private: 0.01
+      test_private_mixed: 0.01
+    fabric:
+      test_private: 0.01
+      test_private_mixed: 0.01
+    fruit_jelly:
+      test_private: 0.01
+      test_private_mixed: 0.01
+    rice:
+      test_private: 0.01
+      test_private_mixed: 0.01
+    sheet_metal:
+      test_private: 0.01
+      test_private_mixed: 0.01
+    vial:
+      test_private: 0.01
+      test_private_mixed: 0.01
+    wallplugs:
+      test_private: 0.01
+      test_private_mixed: 0.01
+    walnuts:
+      test_private: 0.01
+      test_private_mixed: 0.01
