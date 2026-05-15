@@ -1,6 +1,3 @@
-下面是严格 Markdown 格式，可以直接复制到 `README.md`：
-
-````markdown
 # ADAD for VAND2026 Industrial Track
 
 This repository provides the official implementation of **ADAD** for the **VAND2026 Industrial Track**.
