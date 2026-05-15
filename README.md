@@ -115,7 +115,7 @@ The evaluation protocol follows the validation-based threshold selection setting
 
 The following results are obtained on the public validation split using a unified threshold selection setting.
 
-**Public SegF1 threshold@1.000:** `0.207953`
+**Public SegF1 threshold@0.9995:** `0.207953`
 
 | Category | Public Pixel AUROC | Pixel SegF1 | Threshold |
 |---|---:|---:|---:|
