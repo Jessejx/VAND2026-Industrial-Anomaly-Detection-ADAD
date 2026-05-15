@@ -111,6 +111,31 @@ python evaluate.py \
 
 The evaluation protocol follows the validation-based threshold selection setting and does not use test labels for threshold tuning.
 
+## Validation Results
+
+The following results are obtained on the public validation split using a unified threshold selection setting.
+
+**Public SegF1 threshold@1.000:** `0.207953`
+
+| Category | Public Pixel AUROC | Pixel SegF1 | Threshold |
+|---|---:|---:|---:|
+| can | 0.844 | 0.001 | 0.207953 |
+| fabric | 0.850 | 0.464 | 0.207953 |
+| fruit_jelly | 0.969 | 0.533 | 0.207953 |
+| rice | 0.976 | 0.694 | 0.207953 |
+| sheet_metal | 0.914 | 0.393 | 0.207953 |
+| vial | 0.919 | 0.356 | 0.207953 |
+| wallplugs | 0.878 | 0.054 | 0.207953 |
+| walnuts | 0.965 | 0.632 | 0.207953 |
+| **Mean** | **0.915** | **0.391** | **0.207953** |
+
+Additional validation output:
+
+```text
+Public analysis panels: 1084
+output_dir: outputs/vand4_submit
+```
+
 ## Test and Submission Generation
 
 To generate continuous anomaly maps for official submission:
