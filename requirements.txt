@@ -1,0 +1,11 @@
+torch
+numpy
+opencv-python
+Pillow
+tifffile
+PyYAML
+scipy
+scikit-learn
+scikit-image
+tqdm
+timm
