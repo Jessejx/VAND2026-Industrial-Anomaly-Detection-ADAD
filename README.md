@@ -136,6 +136,8 @@ Default submission checkpoint:
 ```text
 checkpoints/vand2026_inp_residual_noise.pth
 ```
+checkpoints can be finded in
+https://drive.google.com/file/d/1h98XrbwiYtFpcmoSofbQ1Tdz71UIQ4dI/view?usp=drive_link
 
 Backbone weights are cached under `backbones/weights`. If the DINOv2 weight file is not already present, the model loader downloads it automatically.
 
